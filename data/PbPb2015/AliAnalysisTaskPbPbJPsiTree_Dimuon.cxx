@@ -111,7 +111,7 @@ AliAnalysisTaskPbPbJPsiTree_Dimuon::AliAnalysisTaskPbPbJPsiTree_Dimuon() :
     fMatchTrigChi2[i] = 999;
     fDCA[i] = 999;
     fCharge[i] = 999;
-    fPDCA[i] = 999;   //pDCA
+    fpDCA[i] = 999;   //pDCA
     fRAtAbsEnd[i] = 999;
     fMuonId[i] = 999;
   }
@@ -189,7 +189,7 @@ AliAnalysisTaskPbPbJPsiTree_Dimuon::AliAnalysisTaskPbPbJPsiTree_Dimuon(const cha
     fDCA[i] = 999;
     fCharge[i] = 999;
     fRAtAbsEnd[i] = 999;
-    fPDCA[i] = 999.;   //pDCA
+    fpDCA[i] = 999.;   //pDCA
     fMuonId[i] = 999;
   }
   for(Int_t i = 0;i < 3000;i++){
@@ -315,7 +315,7 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserCreateOutputObjects(){
   fOutputTree->Branch("MatchTrigChi2",fMatchTrigChi2,"MatchTrigChi2[NMuons]/D");
   fOutputTree->Branch("DCA",fDCA,"DCA[NMuons]/D");//
   fOutputTree->Branch("Charge",fCharge,"Charge[NMuons]/I");
-  fOutputTree->Branch("pDCA",fPDCA,"pDCA[NMuons]/I");  //pDCA
+  fOutputTree->Branch("pDCA",fpDCA,"pDCA[NMuons]/I");  //pDCA
   fOutputTree->Branch("RAtAbsEnd",fRAtAbsEnd,"RAtAbsEnd[NMuons]/D");//
   fOutputTree->Branch("MuonId",fMuonId,"MuonId[NMuons]/I");
 
@@ -372,7 +372,7 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
     fMatchTrigChi2[i] = 999.;
     fDCA[i] = 999.;
     fCharge[i] = 999;
-    fPDCA[i] = 999.;  //pDCA
+    fpDCA[i] = 999.;  //pDCA
     fRAtAbsEnd[i] = 999;
     fMuonId[i] = 999;
   }
@@ -578,8 +578,8 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
      AliAODTrack *mu0 = (AliAODTrack*)fAODEvent -> GetTrack(i);
      if(good_muons[i] == 1){
        /////////////////////
-       if(fMuonTrackCuts -> IsSelected(mu0)) fPDCA[i] = 1;
-       else fPDCA[i] = 0;
+       if(fMuonTrackCuts -> IsSelected(mu0)) fpDCA[nummu] = 1;
+       else fpDCA[nummu] = 0;
        /////////////////////
        fMuonId[nummu] = i;
        fCharge[nummu] = mu0 -> Charge();

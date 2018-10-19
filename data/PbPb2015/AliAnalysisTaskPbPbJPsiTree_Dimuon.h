@@ -83,7 +83,7 @@ class AliAnalysisTaskPbPbJPsiTree_Dimuon : public AliAnalysisTaskSE {
 
   Int_t fCharge[300]; // single mu charge
   Double_t fRAtAbsEnd[300]; // single mu distance from beam center at end abs
-  Int_t	fPDCA[300];             //pDCA
+  Int_t	fpDCA[300];             //pDCA
   Int_t fMuonId[300];
 
   Int_t fNDimu; // dimuons in the event
