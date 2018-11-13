@@ -607,7 +607,7 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
 }
 //______________________________________________________________________________
 Double_t CostHE(AliAODTrack* Mu0, AliAODTrack* Mu1){
-  Double_t EBeam = 2510;
+  Double_t EBeam = 2510*208;
   Double_t mp = 195.323567174;
   //Double_t mp = 0.93827231;
   Double_t pbeam = TMath::Sqrt(EBeam*EBeam - mp*mp);
@@ -664,7 +664,7 @@ Double_t CostHE(AliAODTrack* Mu0, AliAODTrack* Mu1){
 //______________________________________________________________________________
 Double_t PhiHE(AliAODTrack* Mu0, AliAODTrack* Mu1){
   // Calculation the Helicity aimuthal angle (adapted from code by R. Arnaldi)
-  Double_t EBeam = 2510;
+  Double_t EBeam = 2510*208;
   if(EBeam <= 0){
     printf("Can not compute phiHE with EBeam=%f\n",EBeam);
     return -999999999;
@@ -729,7 +729,7 @@ Double_t PhiHE(AliAODTrack* Mu0, AliAODTrack* Mu1){
 }
 //______________________________________________________________________________
 Double_t CostCS(AliAODTrack* Mu0, AliAODTrack* Mu1){
-  Double_t EBeam = 2510;
+  Double_t EBeam = 2510*208;
   Double_t mp = 195.323567174;
   //Double_t mp = 0.93827231;
   Double_t pbeam = TMath::Sqrt(EBeam*EBeam - mp*mp);
@@ -793,7 +793,7 @@ Double_t CostCS(AliAODTrack* Mu0, AliAODTrack* Mu1){
 //______________________________________________________________________________
 Double_t PhiCS(AliAODTrack* Mu0, AliAODTrack* Mu1){
   // Cosinus of the Collins-Soper polar decay angle
-  Double_t EBeam = 2510;
+  Double_t EBeam = 2510*208;
   if(EBeam <= 0){
     printf("Can not compute phiCS with EBeam=%f\n",EBeam);
     return -999999999;

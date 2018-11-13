@@ -24,10 +24,17 @@ AliAnalysisGrid* CreateAlienHandler_Grid(const char *runMode, TString GridDir, T
   plugin -> SetGridDataDir(GridDir.Data()); // Data
   plugin -> SetRunPrefix("000");
 
-  /* alternatively provide run number */
+  //============================================================================
+  // For runnung one single run
   plugin -> AddRunNumber(RunNumber);
-  //  Alternatively use run range
-  //  plugin->SetRunRange(138653, 138666);
+  //============================================================================
+  // For runnung a "bunch" of runs
+  //int runlist[3] = {246855,246851,246847};
+  //for(int i = 0;i < 3;i++){
+    //plugin -> AddRunNumber(runlist[i]);
+  //}
+  //plugin -> SetNrunsPerMaster(1);
+  //============================================================================
 
   // Define alien work directory where all files will be copied. Relative to alien $HOME.
   char outdirname[250];

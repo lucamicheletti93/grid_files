@@ -138,18 +138,18 @@ root -b -q RunPbPb_JPsi_Grid.C\(\"full\",244918\) *
 
 ================================================================================
 
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246994\) *|*
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246991\) *
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246989\) *|*                       // second step failed
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246984\) *|*
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246982\) *
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246980\) *|*
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246949\) *|*
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246948\) *
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246945\) *|*
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246942\) *
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246937\) *
-root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246930\) *
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246994\) 
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246991\) 
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246989\)                        
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246984\) 
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246982\) 
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246980\) 
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246949\) 
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246948\) 
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246945\) 
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246942\) 
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246937\) 
+root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246930\) 
 root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246871\) *|*
 root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246867\) *|*
 root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",246865\) *

@@ -16,14 +16,14 @@ for eachLine in fileRunList:
     if runNumber.isdigit():
         if os.path.isfile('/media/luca/488AE2208AE20A70/PbPb_2015_Trees_pDCA/Tree_' + runNumber + '.root'):
             print os.path.join('/media/luca/488AE2208AE20A70/PbPb_2015_Trees_pDCA/Tree_' + runNumber + '.root')
-            if os.path.isfile('hist_trigger_response_function/Hist_' + runNumber + '.root'):
+            if os.path.isfile('/home/luca/cernbox/JPSI/Jpsi_polarization_data_sync/hist_trigger_response_function/Hist_' + runNumber + '.root'):
                 print "The file was already processed"
             else:
                 print "The file has to be processed"
                 fileData = TFile.Open('/media/luca/488AE2208AE20A70/PbPb_2015_Trees_pDCA/Tree_' + runNumber + '.root')
                 treeData = fileData.Get("PbPbTree")
                 checkTrig = DataProcessor(treeData)
-                checkTrig.ComputeTriggerResponseFunction("FullStat",'hist_trigger_response_function/Hist_' + runNumber + '.root')
+                checkTrig.ComputeTriggerResponseFunction("FullStat",'/home/luca/cernbox/JPSI/Jpsi_polarization_data_sync/hist_trigger_response_function/Hist_' + runNumber + '.root')
                 #fileCMUL7Triggers.write(str(checkTrig.GetCMUL7Triggers()) + "\n")
                 del checkTrig
                 fileData.Close()
@@ -53,8 +53,8 @@ for eachLine in fileRunList:
         if char.isdigit():
             runNumber += char
     if runNumber.isdigit():
-        if os.path.isfile('hist_trigger_response_function/Hist_' + runNumber + '.root'):
-            fileHistTriggerResponseFunction = TFile.Open('hist_trigger_response_function/Hist_' + runNumber + '.root')
+        if os.path.isfile('/home/luca/cernbox/JPSI/Jpsi_polarization_data_sync/hist_trigger_response_function/Hist_' + runNumber + '.root'):
+            fileHistTriggerResponseFunction = TFile.Open('/home/luca/cernbox/JPSI/Jpsi_polarization_data_sync/hist_trigger_response_function/Hist_' + runNumber + '.root')
             histLowPtSM.append(fileHistTriggerResponseFunction.Get("fHistLowPtSM")); histSumLowPtSM.Add(histLowPtSM[index]);
             histAllPtSM.append(fileHistTriggerResponseFunction.Get("fHistAllPtSM")); histSumAllPtSM.Add(histAllPtSM[index]);
             histLowPtSMpDCA.append(fileHistTriggerResponseFunction.Get("fHistLowPtSMpDCA")); histSumLowPtSMpDCA.Add(histLowPtSMpDCA[index]);
@@ -68,10 +68,6 @@ for eachLine in fileRunList:
             fileCMUL7Triggers.write("\n")
 fileRunList.close()
 fileCMUL7Triggers.close()
-
-
-
-
 
 histTriggerResponseFunctionDataSM = TH1D("histTriggerResponseFunctionDataSM","",100,0.,10.);
 histTriggerResponseFunctionDataSM.Divide(histSumLowPtSM,histSumAllPtSM,1,1,"B");
