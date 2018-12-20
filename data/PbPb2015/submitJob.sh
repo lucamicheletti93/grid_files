@@ -1,6 +1,6 @@
 #!/bin/bash
 
-fileRunList="bash_scripts/run_list.txt"
+fileRunList="bash_scripts/to_reterminate.txt"
 fileSubmittedRuns="bash_scripts/submitted_jobs.txt"
 while IFS=fileRunList read line; do
 	if grep -Fxq "$line" $fileSubmittedRuns; then

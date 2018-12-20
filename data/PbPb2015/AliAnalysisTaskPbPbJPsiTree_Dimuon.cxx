@@ -658,6 +658,7 @@ Double_t CostHE(AliAODTrack* Mu0, AliAODTrack* Mu1){
   } else {
     cost = zaxis.Dot((pMu2Dimu.Vect()).Unit());
   }
+  cout << "CosTheta HE = " << cost << endl;
   return cost;
 }
 //______________________________________________________________________________
@@ -681,7 +682,7 @@ Double_t PhiHE(AliAODTrack* Mu0, AliAODTrack* Mu1){
   Double_t pla21 = Mu1 -> Py();
   Double_t pla22 = Mu1 -> Pz();
   Double_t e2 = Mu1 -> E();
-  //Double_t mu2Charge=Mu1->Charge();
+  Double_t mu2Charge = Mu1 -> Charge();
   if(pla10==0 && pla11==0 && pla12==0 && e1==0 && mu1Charge==0 && pla20==0 && pla21==0 && pla22==0 && e2==0.){return -666.;}
 
   // Fill the Lorentz vector for projectile and target
@@ -724,6 +725,38 @@ Double_t PhiHE(AliAODTrack* Mu0, AliAODTrack* Mu1){
    Double_t phi;
    if(mu1Charge>0) phi = TMath::ATan2((pMu1Dimu.Vect()).Dot(yaxis),(pMu1Dimu.Vect()).Dot(xaxis));
    else phi = TMath::ATan2((pMu2Dimu.Vect()).Dot(yaxis),(pMu2Dimu.Vect()).Dot(xaxis));
+
+   cout << "Phi HE = " << phi*(180./TMath::Pi()) << endl;
+   /*cout << "x ---> ";
+   xaxis.Print();
+   cout << "y ---> ";
+   yaxis.Print();
+   cout << "z ---> ";
+   zaxis.Print();
+   cout << "p Dimu ---> ";
+   (pMu1Dimu.Vect()).Print();
+   cout << "p Proj = ";
+   (pProjDimu).Print();
+   cout << "p Targ = ";
+   (pTargDimu).Print();*/
+   //cout << "y.z = " << yaxis.Dot(zaxis) << endl;
+   //cout << "x.z = " << xaxis.Dot(zaxis) << endl;
+   //cout << "x.y = " << xaxis.Dot(yaxis) << endl;
+   /*(yaxis.Cross(zaxis)).Print();
+   (zaxis.Cross(xaxis)).Print();
+   (xaxis.Cross(yaxis)).Print();
+   cout << "Lorentz Vector = ";
+   pDimuCM.Print();*/
+   cout << "================================" << endl;
+   cout << "TLorentzVector pProjLab = ";
+   (pProjCM).Print();
+   cout << "TLorentzVector pTargLab = ";
+   (pTargCM).Print();
+   cout << "TLorentzVector mu1Lab " << "(" << mu1Charge << ") = ";
+   pMu1CM.Print();
+   cout << "TLorentzVector mu2Lab" << "(" << mu2Charge << ") = ";
+   pMu2CM.Print();
+   cout << "================================" << endl;
 
    return phi;
 }

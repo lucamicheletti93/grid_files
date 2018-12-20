@@ -32,7 +32,7 @@ void RunPbPb_JPsi_Grid(const char *RunMode = "test",
 		                   Bool_t usePhysicsSelection = kTRUE,
                        TString GridDir="/alice/data/2015/LHC15o",                               // Alternative = TString GridDir="/alice/data/2017/LHC17n",
                        TString DataPattern="*muon_calo_pass1/AOD197/*/AliAOD.root",             // Alternative = String DataPattern="*muon_calo_pass2/AOD/*/AliAOD.root",
-		                   TString AliPhysicsVersion="vAN-20180930-1",                              // Update to the last version
+		                   TString AliPhysicsVersion="vAN-20181121-1",                              // Update to the last version
 	                     Bool_t gridMerge = kTRUE){
 
   // RunMode can be set to "test" to test running of the code

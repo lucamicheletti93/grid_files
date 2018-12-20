@@ -26,6 +26,7 @@
 #endif
 
 void checkTrigger(){
+  gStyle -> SetOptStat(0);
 
   const int nRuns = 137;
   int runNumber[nRuns] = {246994,246991,246989,246984,246982,246980,246949,246948,246945,246942,246937,246930,246871,246867,246865,246864,246859,246855,246851,246847,246846,246845,246844,246809,246808,
@@ -34,6 +35,33 @@ void checkTrigger(){
                           246036,246012,246003,246001,245996,245963,245954,245952,245949,245833,245831,245829,245793,245785,245775,245766,245759,245752,245738,245731,245729,245705,245700,245692,245683,
                           245554,245543,245542,245540,245535,245507,245505,245504,245501,245496,245450,245446,245410,245409,245407,245401,245353,245347,245346,245345,245343,245259,245253,245233,245232,
                           245231,245152,245151,245146,245145,245068,245066,245064,244983,244982,244980,244918};
+
+
+  /*Float_t fPercentV0M;
+  Bool_t fIsPhysSelected;
+  char fTrigClass[500];
+
+  TFile *fileTest = new TFile("/media/luca/488AE2208AE20A70/PbPb_2015_Trees_pDCA/Tree_244982.root","READ");
+  TTree *treeTest = (TTree*) fileTest -> Get("PbPbTree");
+  treeTest -> SetBranchAddress("PercentV0M",&fPercentV0M);
+  treeTest -> SetBranchAddress("IsPhysSelected",&fIsPhysSelected);
+  treeTest -> SetBranchAddress("FiredTriggerClasses",fTrigClass);
+
+  TH1F *hPercentileV0M_CINT7 = new TH1F("hPercentileV0M_CINT7","hPercentileV0M_CINT7",201,-1,200);
+  for(int i = 0;i < treeTest -> GetEntries();i++){
+    treeTest -> GetEntry(i);
+    //if(fIsPhysSelected){
+      TString Trigger = fTrigClass;
+      Bool_t TriggerSelected = kFALSE;
+      if(Trigger.Contains("CINT7-B-NOPF-MUFAST")) TriggerSelected = kTRUE;
+      if(TriggerSelected){
+        hPercentileV0M_CINT7 -> Fill(fPercentV0M);
+      }
+    //}
+  }
+
+  hPercentileV0M_CINT7 -> Draw();
+  return;*/
 
   Long_t *dummy1 = 0, *dummy2 = 0, *dummy3 = 0, *dummy4 = 0;
   for(int i = 0;i < nRuns;i++){
@@ -93,6 +121,13 @@ void checkTrigger(){
   histTriggerResponseFunctionDataSM -> Draw("Esame");
   histTriggerResponseFunctionDataSMpDCA -> Draw("Esame");
   legendGenCost -> Draw();
+
+  TH1D *histRatioTriggerResponseFunction = new TH1D("histRatioTriggerResponseFunction","",100,0.,10.);
+  histRatioTriggerResponseFunction -> Divide(histTriggerResponseFunctionDataSMpDCA,histTriggerResponseFunctionDataSM,1,1);
+  histRatioTriggerResponseFunction -> SetLineColor(kBlack);
+
+  TCanvas *canvasRatioTriggerResponseFunction = new TCanvas("canvasRatioTriggerResponseFunction","canvasRatioTriggerResponseFunction",20,20,600,600);
+  histRatioTriggerResponseFunction -> Draw();
 
   //============================================================================
 

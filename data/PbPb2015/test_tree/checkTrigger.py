@@ -60,12 +60,14 @@ for eachLine in fileRunList:
             histLowPtSMpDCA.append(fileHistTriggerResponseFunction.Get("fHistLowPtSMpDCA")); histSumLowPtSMpDCA.Add(histLowPtSMpDCA[index]);
             histAllPtSMpDCA.append(fileHistTriggerResponseFunction.Get("fHistAllPtSMpDCA")); histSumAllPtSMpDCA.Add(histAllPtSMpDCA[index]);
             histCMUL7Triggers = fileHistTriggerResponseFunction.Get("fHistCMUL7Triggers")
-            print "CMUL7 Triggers = " + str(histCMUL7Triggers.GetBinContent(1))
+            #print runNumber + " CMUL7 Triggers = " + str(histCMUL7Triggers.GetBinContent(1))
+            print str(histCMUL7Triggers.GetBinContent(1))
             fileCMUL7Triggers.write(str(histCMUL7Triggers.GetBinContent(1)) + "\n")
             fileHistTriggerResponseFunction.Close()
             index += 1
         else:
-            fileCMUL7Triggers.write("\n")
+            print ""
+            #fileCMUL7Triggers.write("\n")
 fileRunList.close()
 fileCMUL7Triggers.close()
 

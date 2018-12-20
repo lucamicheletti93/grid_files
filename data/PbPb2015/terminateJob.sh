@@ -19,6 +19,10 @@ done < "$fileRunList"
 echo "$line" >> "bash_scripts/reterminated_jobs.txt"
 root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",$line\)
 
+while IFS=fileRunList read line; do
+	echo "cd ; cd PbPb2015_pDCA/LHC15o/muon_calo_pass1/$line/OutputTree/000/ ; cp Tree_$line.root file:."
+done < "$fileRunList"
+
 #while IFS=fileTermianteRuns read line1; do
 	#while IFS=fileRunList read line2; do
 		#if [[ $line1 == *"$line2"* ]]; then
