@@ -1,6 +1,7 @@
 #!/bin/bash
 
-fileRunList="bash_scripts/run_list.txt"
+fileRunList="bash_scripts/to_resubmit.txt"
+
 while IFS= read line
 do
 	fileXml="$line.xml"

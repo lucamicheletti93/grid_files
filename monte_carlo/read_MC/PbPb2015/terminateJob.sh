@@ -1,6 +1,7 @@
 #!/bin/bash
 
-fileRunList="bash_scripts/run_list.txt"
+#fileRunList="bash_scripts/run_list.txt"
+fileRunList="bash_scripts/to_resubmit.txt"
 fileTermianteRuns="bash_scripts/terminated_jobs.txt"
 
 while IFS=fileRunList read line; do

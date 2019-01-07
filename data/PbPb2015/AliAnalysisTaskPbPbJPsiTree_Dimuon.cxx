@@ -821,6 +821,7 @@ Double_t CostCS(AliAODTrack* Mu0, AliAODTrack* Mu1){
     cost = zaxisCS.Dot((pMu2Dimu.Vect()).Unit());
     if(mu2Charge < 0 && cost<0) cost = -cost;
   }
+  cout << "CosTheta CS = " << cost << endl;
   return cost;
 }
 //______________________________________________________________________________
@@ -886,6 +887,7 @@ Double_t PhiCS(AliAODTrack* Mu0, AliAODTrack* Mu1){
    if(mu1Charge>0) phi = TMath::ATan2((pMu1Dimu.Vect()).Dot(yaxisCS),((pMu1Dimu.Vect()).Dot(xaxisCS)));
    else phi = TMath::ATan2((pMu2Dimu.Vect()).Dot(yaxisCS),((pMu2Dimu.Vect()).Dot(xaxisCS)));
 
+   cout << "Phi CS = " << phi*(180./TMath::Pi()) << endl;
    return phi;
 }
 //______________________________________________________________________________
