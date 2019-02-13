@@ -1,7 +1,7 @@
 #ifndef AliAnalysisTaskPbPbJPsiTree_Dimuon_H
 #define AliAnalysisTaskPbPbJPsiTree_Dimuon_H
 
-/* Copyright(c) 1998-1999, ALICE Experiment at CERN, All rights reserved. *
+/* Copyright(c) 1998-1999, ALICE Experiment at CERN, All rights reserved. * 
  * See cxx source for full Copyright notice                               */
 
 #include "AliAnalysisTaskSE.h"

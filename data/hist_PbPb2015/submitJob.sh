@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 fileRunList="bash_scripts/run_list.txt"
 fileSubmittedRuns="bash_scripts/submitted_jobs.txt"

@@ -4,7 +4,7 @@
 
 AliAnalysisGrid* CreateAlienHandler_Grid(const char *runMode, TString GridDir, TString DataPattern, Int_t RunNumber, TString AliPhysicsVersion, Bool_t gridMerge)
 {
-  // Check if user has a valid token, otherwise make one. This has limitations.
+  // Check if user has a valid token, otherwise make one. This has limitations. 
   // One can always follow the standard procedure of calling alien-token-init then
   // source /tmp/gclient_env_$UID in the current shell.
 
