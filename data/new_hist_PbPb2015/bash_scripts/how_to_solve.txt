@@ -1,0 +1,5 @@
+# If the grid does not work change the site
+
+export alien_CLOSEST_SITE=CERN
+export alien_SITE=CERN
+export alien_CLOSE_SE=ALICE::CERN::EOS
