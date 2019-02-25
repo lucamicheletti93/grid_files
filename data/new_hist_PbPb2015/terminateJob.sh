@@ -1,9 +1,9 @@
 #!/bin/bash
 
-fileRunList="bash_scripts/run_list.txt"
-fileTermianteRuns="bash_scripts/terminated_jobs.txt"
-#fileRunList="bash_scripts/to_reterminate.txt"
-#fileTermianteRuns="bash_scripts/reterminated_jobs.txt"
+#fileRunList="bash_scripts/run_list.txt"
+#fileTermianteRuns="bash_scripts/terminated_jobs.txt"
+fileRunList="bash_scripts/to_reterminate.txt"
+fileTermianteRuns="bash_scripts/reterminated_jobs.txt"
 
 while IFS=fileRunList read line; do
 	if grep -Fxq "$line" $fileTermianteRuns; then
@@ -14,8 +14,8 @@ while IFS=fileRunList read line; do
 	fi
 done < "$fileRunList"
 
-echo "$line" >> "bash_scripts/terminated_jobs.txt"
-#echo "$line" >> "bash_scripts/reterminated_jobs.txt"
+#echo "$line" >> "bash_scripts/terminated_jobs.txt"
+echo "$line" >> "bash_scripts/reterminated_jobs.txt"
 root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",$line\)
 
 while IFS=fileRunList read line; do
