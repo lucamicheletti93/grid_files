@@ -522,14 +522,16 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
                 //cout << "charge = " << dimu -> Charge() << endl;
                 if(dimu -> Charge() == 0){
                   DimuPt = dimu -> Pt();
-                  if(TriggerSelected_CINT7){
-                    //cout << "trigger CINT7" << endl;
-                    if(DimuPt > 0 && DimuPt < 50){ 
-                      if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(Pt_Mu0);}
-                      if(Match_Mu1 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(Pt_Mu1);}
+                  if(fIsPhysSelected){
+                    if(TriggerSelected_CINT7 && TriggerSelected_CMUL7){
+                      //cout << "trigger CINT7" << endl;
+                      if(DimuPt > 0 && DimuPt < 50){ 
+                        if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(Pt_Mu0);}
+                        if(Match_Mu1 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(Pt_Mu1);}
 
-                      if(Match_Mu0 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(Pt_Mu0);}
-                      if(Match_Mu1 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(Pt_Mu1);}
+                        if(Match_Mu0 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(Pt_Mu0);}
+                        if(Match_Mu1 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(Pt_Mu1);}
+                      }
                     }
                   }
                 }

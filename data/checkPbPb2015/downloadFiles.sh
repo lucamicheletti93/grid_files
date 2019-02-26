@@ -2,7 +2,7 @@
 
 FILE_TERMINATED_RUNS="bash_scripts/reterminated_jobs.txt"
 ALIEN_PATH="checkPbPb2015/LHC15o/muon_calo_pass1"
-LOCAL_PATH="/home/luca/cernbox/JPSI/Jpsi_polarization_data_sync/hist_checkPbPb2015"
+LOCAL_PATH="/home/luca/cernbox/JPSI/Jpsi_polarization_data_sync/hist_checkPbPb2015/PS_CMUL7"
 
 while IFS=FILE_TERMINATED_RUNS read LINE; do
     if [ $(find "$LOCAL_PATH" -name "Tree_$LINE.root") ]; then 
