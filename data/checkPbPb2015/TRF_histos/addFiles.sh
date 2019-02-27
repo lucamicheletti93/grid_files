@@ -5,7 +5,8 @@ rm hist_TRF_sum.root
 FILE_RUN_LIST="../bash_scripts/run_list.txt"
 
 COMMAND_STRING="hadd hist_TRF_sum.root"
-FILE_PATH="/home/luca/cernbox/JPSI/Jpsi_polarization_data_sync/hist_checkPbPb2015/PS_CMUL7"
+#FILE_PATH="/home/luca/cernbox/JPSI/Jpsi_polarization_data_sync/hist_checkPbPb2015/PS_CMUL7"
+FILE_PATH="/home/luca/cernbox/JPSI/Jpsi_polarization_data_sync/hist_checkPbPb2015/AOD175"
 
 while IFS=FILE_RUN_LIST read LINE; do
   FILE_LIST="$FILE_PATH/Tree_$LINE.root"

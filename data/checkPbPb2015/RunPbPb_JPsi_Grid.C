@@ -32,6 +32,7 @@ void RunPbPb_JPsi_Grid(const char *RunMode = "test",
 		                   Bool_t usePhysicsSelection = kTRUE,
                        TString GridDir="/alice/data/2015/LHC15o",                               // Alternative = TString GridDir="/alice/data/2017/LHC17n",
                        TString DataPattern="*muon_calo_pass1/AOD197/*/AliAOD.root",             // Alternative = String DataPattern="*muon_calo_pass2/AOD/*/AliAOD.root",
+//                       TString DataPattern="*muon_calo_pass1/AOD197/*/AliAOD.Muons.root",             // Alternative = String DataPattern="*muon_calo_pass2/AOD/*/AliAOD.root",
 		                   TString AliPhysicsVersion="vAN-20181121-1",                              // Update to the last version
 	                     Bool_t gridMerge = kTRUE){
 
@@ -67,11 +68,16 @@ void RunPbPb_JPsi_Grid(const char *RunMode = "test",
   AliAnalysisDataContainer *cinput1 = NULL;
   cinput1 = mgr -> GetCommonInputContainer();
   //============================================================================
-  // Physics selection
+  // Physics selection (disable for 2015 data -> new PS include pile-up cuts and was introduced for p-Pb)
   //============================================================================
-  gROOT -> ProcessLine(".L $ALICE_PHYSICS/OADB/macros/AddTaskPhysicsSelection.C");
-  AliPhysicsSelectionTask* physSelTask;
-  if(usePhysicsSelection) physSelTask = AddTaskPhysicsSelection(kFALSE,kFALSE);    //second kTRUE to switch on the pile-up cut in PS
+  //gROOT -> ProcessLine(".L $ALICE_PHYSICS/OADB/macros/AddTaskPhysicsSelection.C");
+  //AliPhysicsSelectionTask* physSelTask;
+  //if(usePhysicsSelection) physSelTask = AddTaskPhysicsSelection(kFALSE,kFALSE);    //second kTRUE to switch on the pile-up cut in PS
+  //============================================================================
+  // Physics selection for 2015 data
+  //============================================================================
+  //AliAnalysisTaskPbPbJPsiTree_Dimuon *PbPbJPsiTask = new AliAnalysisTaskPbPbJPsiTree_Dimuon("AliAnalysisTaskPbPbJPsiTree_Dimuon");
+  //if(usePhysicsSelection) PbPbJPsiTask -> SelectCollisionCandidates(AliVEvent::kMuonUnlikePB | AliVEvent::kINT7 | AliVEvent::kMuonLikePB);
   //============================================================================
   // Read centrality information (https://twiki.cern.ch/twiki/bin/viewauth/ALICE/PACentStudiesRun2)
   //============================================================================
@@ -84,6 +90,9 @@ void RunPbPb_JPsi_Grid(const char *RunMode = "test",
   gROOT -> LoadMacro("AliAnalysisTaskPbPbJPsiTree_Dimuon.cxx++g");  //NEEDED to run LOCALLY!!!!
   gROOT -> LoadMacro("AddTaskPbPbJPsiTree_Dimuon_Grid.C");
   AliAnalysisTaskPbPbJPsiTree_Dimuon *taskTree = AddTaskPbPbJPsiTree_Dimuon_Grid(RunNumber);
+  //////////////////////////////////////////////////////////////////////////////
+  if(usePhysicsSelection) taskTree -> SelectCollisionCandidates(AliVEvent::kMuonUnlikePB | AliVEvent::kINT7 | AliVEvent::kMuonLikePB | AliVEvent::kMuonSingleLowPt7);
+  //////////////////////////////////////////////////////////////////////////////
   mgr -> AddTask(taskTree);
   //============================================================================
   // Init analysis on GRID

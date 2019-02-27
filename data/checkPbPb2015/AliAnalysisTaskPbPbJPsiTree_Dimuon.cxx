@@ -393,7 +393,7 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
 
   // to apply physics selection
   UInt_t fSelectMask = ((AliInputEventHandler*)(AliAnalysisManager::GetAnalysisManager() -> GetInputEventHandler())) -> IsEventSelected();
-  fIsPhysSelected = fSelectMask & (AliVEvent::kMuonUnlikeLowPt7 | AliVEvent::kMuonLikeLowPt7 | AliVEvent::kMuonSingleLowPt7 | AliVEvent::kMuonSingleHighPt7  | AliVEvent::kINT7inMUON  | AliVEvent::kINT7);
+  fIsPhysSelected = fSelectMask & (AliVEvent::kMuonUnlikeLowPt7 | AliVEvent::kMuonLikeLowPt7 | AliVEvent::kMuonSingleLowPt7 | AliVEvent::kMuonSingleHighPt7  | AliVEvent::kINT7inMUON  | AliVEvent::kINT7 | AliVEvent::kMuonUnlikePB | AliVEvent::kINT7 | AliVEvent::kMuonLikePB | AliVEvent::kMuonSingleLowPt7);
   // warning: I added AliVEvent::kINT7 (MB in CENT cluster, while kINT7inMUON is MB in MUFAST)
   //printf("trigger = %s\n\n",fTrigClass);
   // centrality
@@ -454,18 +454,19 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
     AliAODTrack *track = (AliAODTrack*) fAODEvent -> GetTrack(i);
     if(!fMuonTrackCuts -> IsSelected(track)){continue;}
     if(track -> IsMuonTrack()){
-      if(TriggerSelected_CINT7){
+      if(TriggerSelected_CINT7 || TriggerSelected_CMUL7){
         if(track -> Eta() > -4 && track -> Eta() < -2.5){
           if(track -> GetRAtAbsorberEnd() > 17.6 && track -> GetRAtAbsorberEnd() < 89.5){
             //printf("Eta = %f ; RAbs = %f ; TrMatch = %i \n",track -> Eta(),track -> GetRAtAbsorberEnd(),track -> GetMatchTrigger());
-            if(track -> GetMatchTrigger() >= 1){((TH1D*)(fOutput -> FindObject("histAllPtSM"))) -> Fill(track -> Pt());}
-            if(track -> GetMatchTrigger() >= 2){((TH1D*)(fOutput -> FindObject("histLowPtSM"))) -> Fill(track -> Pt());}
+            if(fIsPhysSelected){
+              if(track -> GetMatchTrigger() >= 1){((TH1D*)(fOutput -> FindObject("histAllPtSM"))) -> Fill(track -> Pt());}
+              if(track -> GetMatchTrigger() >= 2){((TH1D*)(fOutput -> FindObject("histLowPtSM"))) -> Fill(track -> Pt());}
+            }
           }
         }
       }
     }
   }
-
 
   // Di-Muon Loop
   Double_t DimuMass = 999;
@@ -511,19 +512,19 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
           Pt_Mu0 = mu0 -> Pt();
           Pt_Mu1 = mu1 -> Pt();
 
-          //cout << "Eta = " << Eta_Mu0 << " " << Eta_Mu1 << endl;
-          //cout << "RAbs = " << RAbs_Mu0 << " " << RAbs_Mu1 << endl;
+          cout << "Eta = " << Eta_Mu0 << " " << Eta_Mu1 << endl;
+          cout << "RAbs = " << RAbs_Mu0 << " " << RAbs_Mu1 << endl;
           if((Eta_Mu0 > -4 && Eta_Mu0 < -2.5) && (Eta_Mu1 > -4 && Eta_Mu1 < -2.5)){
             if((RAbs_Mu0 > 17.6 && RAbs_Mu0 < 89.5) && (RAbs_Mu1 > 17.6 && RAbs_Mu1 < 89.5)){
               AliAODDimuon *dimu = new AliAODDimuon(mu0,mu1);
               DimuY = dimu -> Y();
-              //cout << "Y = " << DimuY << endl;
+              cout << "Y = " << DimuY << endl;
               if(DimuY > -4 && DimuY < -2.5){
-                //cout << "charge = " << dimu -> Charge() << endl;
+                cout << "charge = " << dimu -> Charge() << endl;
                 if(dimu -> Charge() == 0){
                   DimuPt = dimu -> Pt();
-                  if(fIsPhysSelected){
-                    if(TriggerSelected_CINT7 && TriggerSelected_CMUL7){
+                  if(fIsPhysSelected){                                                    // PS added to see the effet
+                    if(TriggerSelected_CINT7 || TriggerSelected_CMUL7){                   // CMUL7 trigger added to see if play any role
                       //cout << "trigger CINT7" << endl;
                       if(DimuPt > 0 && DimuPt < 50){ 
                         if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(Pt_Mu0);}
@@ -589,10 +590,10 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
               cout << "TRIGGER" << endl;
               if(DimuPt > 0 && DimuPt < 50){
                 cout << "PT" << endl;
-                if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM"))) -> Fill(Pt_Mu0);}
-		            if(Match_Mu1 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM"))) -> Fill(Pt_Mu1);}
-		            if(Match_Mu0 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM"))) -> Fill(Pt_Mu0);}
-		            if(Match_Mu1 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM"))) -> Fill(Pt_Mu1);}
+                if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(Pt_Mu0);}
+		            if(Match_Mu1 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(Pt_Mu1);}
+		            if(Match_Mu0 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(Pt_Mu0);}
+		            if(Match_Mu1 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(Pt_Mu1);}
               }
             }
           }
