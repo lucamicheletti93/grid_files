@@ -41,34 +41,34 @@ void compareTRF(){
 
     TH1D *histTRFSM_AOD175 = new TH1D("histTRFSM_AOD175","histTRFSM_AOD175",500,0.,50.);
     histTRFSM_AOD175 -> Divide(histLowPtSM_AOD175,histAllPtSM_AOD175,1,1); histTRFSM_AOD175 -> SetLineColor(kRed); histTRFSM_AOD175 -> SetMarkerStyle(28);
- 
+
     TH1D *histTRFDM_AOD175 = new TH1D("histTRFDM_AOD175","histTRFDM_AOD175",500,0.,50.);
     histTRFDM_AOD175 -> Divide(histLowPtDM_AOD175,histAllPtDM_AOD175,1,1); histTRFDM_AOD175 -> SetLineColor(kGreen+2); histTRFDM_AOD175 -> SetMarkerStyle(28);
 
     TH1D *histTRFSM_no_PS_no_CMUL7 = new TH1D("histTRFSM_no_PS_no_CMUL7","histTRFSM_no_PS_no_CMUL7",500,0.,50.);
     histTRFSM_no_PS_no_CMUL7 -> Divide(histLowPtSM_no_PS_no_CMUL7,histAllPtSM_no_PS_no_CMUL7,1,1); histTRFSM_no_PS_no_CMUL7 -> SetLineColor(kRed);
- 
+
     TH1D *histTRFDM_no_PS_no_CMUL7 = new TH1D("histTRFDM_no_PS_no_CMUL7","histTRFDM_no_PS_no_CMUL7",500,0.,50.);
     histTRFDM_no_PS_no_CMUL7 -> Divide(histLowPtDM_no_PS_no_CMUL7,histAllPtDM_no_PS_no_CMUL7,1,1); histTRFDM_no_PS_no_CMUL7 -> SetLineColor(kGreen+2);
 
     TH1D *histTRFSM_PS_CMUL7 = new TH1D("histTRFSM_PS_CMUL7","histTRFSM_PS_CMUL7",500,0.,50.);
     histTRFSM_PS_CMUL7 -> Divide(histLowPtSM_PS_CMUL7,histAllPtSM_PS_CMUL7,1,1); histTRFSM_PS_CMUL7 -> SetLineColor(kOrange); histTRFSM_PS_CMUL7 -> SetMarkerSize(0.5); histTRFSM_PS_CMUL7 -> SetMarkerStyle(20); histTRFSM_PS_CMUL7 -> SetMarkerColor(kOrange);
- 
+
     TH1D *histTRFDM_PS_CMUL7 = new TH1D("histTRFDM_PS_CMUL7","histTRFDM_PS_CMUL7",500,0.,50.);
     histTRFDM_PS_CMUL7 -> Divide(histLowPtDM_PS_CMUL7,histAllPtDM_PS_CMUL7,1,1); histTRFDM_PS_CMUL7 -> SetLineColor(kAzure); histTRFDM_PS_CMUL7 -> SetMarkerSize(0.5); histTRFDM_PS_CMUL7 -> SetMarkerStyle(20); histTRFDM_PS_CMUL7 -> SetMarkerColor(kAzure);
 
     TH2D *histGridTRF = new TH2D("histGridTRF","",100,0.,10.,100,0.,1.2);
 
     TLegend *legendCompTRF = new TLegend(0.6,0.7,0.89,0.89);
-    legendCompTRF -> AddEntry(histTRFSM_no_PS_no_CMUL7,"SM - no PS, no CMUL7","LP");
-    legendCompTRF -> AddEntry(histTRFDM_no_PS_no_CMUL7,"DM - no PS, no CMUL7","LP");
+    legendCompTRF -> AddEntry(histTRFSM_no_PS_no_CMUL7,"Single Muons - no PS, no CMUL7","LP");
+    legendCompTRF -> AddEntry(histTRFDM_no_PS_no_CMUL7,"DiMuons - no PS, no CMUL7","LP");
     //legendCompTRF -> AddEntry(histTRFSM_PS_CMUL7,"SM - PS, CMUL7","LP");
-    legendCompTRF -> AddEntry(histTRFDM_PS_CMUL7,"DM - PS, CMUL7","LP");
+    legendCompTRF -> AddEntry(histTRFDM_PS_CMUL7,"DiMuons - PS, CMUL7 && CINT7","LP");
     legendCompTRF -> AddEntry(histBiswarupTRFData,"Data Biswarup","LP");
     legendCompTRF -> AddEntry(histBiswarupTRFMC,"MC Biswarup","LP");
-    legendCompTRF -> AddEntry(histTRFSM_AOD175,"SM - AOD175","LP");
-    legendCompTRF -> AddEntry(histTRFDM_AOD175,"DM - AOD175","LP");
-    
+    legendCompTRF -> AddEntry(histTRFSM_AOD175,"Single Muons - AOD175","LP");
+    legendCompTRF -> AddEntry(histTRFDM_AOD175,"DiMuons - AOD175","LP");
+
 
     TCanvas *canvasCompTRF = new TCanvas("canvasCompTRF","canvasCompTRF",600,600);
     histGridTRF -> Draw();
