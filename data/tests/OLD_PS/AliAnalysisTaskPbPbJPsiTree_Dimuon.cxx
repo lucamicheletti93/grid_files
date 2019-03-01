@@ -390,11 +390,10 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
 
   if(firedtrigger.Contains("CINT7-B-NOPF-MUFAST")){TriggerSelected_CINT7 = kTRUE;}
   if(firedtrigger.Contains("CMUL7-B-NOPF-MUFAST")){TriggerSelected_CMUL7 = kTRUE;}
-  if(firedtrigger.Contains("CV0L7-B-NOPF-CENT")){TriggerSelected_CMUL7 = kTRUE;}
 
   // to apply physics selection
   UInt_t fSelectMask = ((AliInputEventHandler*)(AliAnalysisManager::GetAnalysisManager() -> GetInputEventHandler())) -> IsEventSelected();
-  fIsPhysSelected = fSelectMask & (AliVEvent::kMuonUnlikeLowPt7 | AliVEvent::kMuonLikeLowPt7 | AliVEvent::kMuonSingleLowPt7 | AliVEvent::kMuonSingleHighPt7  | AliVEvent::kINT7inMUON  | AliVEvent::kINT7 | AliVEvent::kMuonUnlikePB | AliVEvent::kINT7 | AliVEvent::kMuonLikePB | AliVEvent::kMuonSingleLowPt7);
+  fIsPhysSelected = fSelectMask & (AliVEvent::kMuonUnlikeLowPt7 | AliVEvent::kMuonLikeLowPt7 | AliVEvent::kMuonSingleLowPt7 | AliVEvent::kMuonSingleHighPt7  | AliVEvent::kINT7inMUON  | AliVEvent::kINT7 | AliVEvent::kMuonUnlikePB | AliVEvent::kMuonLikePB | AliVEvent::kMUSPB | AliVEvent::kMB);
   // warning: I added AliVEvent::kINT7 (MB in CENT cluster, while kINT7inMUON is MB in MUFAST)
   //printf("trigger = %s\n\n",fTrigClass);
   // centrality
@@ -521,7 +520,7 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
               AliAODDimuon *dimu = new AliAODDimuon(mu0,mu1);
               DimuY = dimu -> Y();
               DimuMass = dimu -> Mass();
-              if(DimuMass < 2.7 || DimuMass > 3.5){continue;}
+              //if(DimuMass < 2.7 || DimuMass > 3.5){continue;}
               cout << "Y = " << DimuY << endl;
               if(DimuY > -4 && DimuY < -2.5){
                 cout << "charge = " << dimu -> Charge() << endl;
