@@ -22,7 +22,7 @@ AliAnalysisTaskPbPbJPsiTree_Dimuon *AddTaskPbPbJPsiTree_Dimuon_Grid(Int_t RunNum
    AliAnalysisTaskPbPbJPsiTree_Dimuon *PbPbJPsiTask = new AliAnalysisTaskPbPbJPsiTree_Dimuon("AliAnalysisTaskPbPbJPsiTree_Dimuon");
 
    ///////////////////////////////////////////////////////////////////////////// // WORNING!
-   //PbPbJPsiTask -> SelectCollisionCandidates(AliVEvent::kMuonUnlikePB | AliVEvent::kINT7 | AliVEvent::kMuonLikePB | AliVEvent::kMuonSingleLowPt7);
+   //PbPbJPsiTask -> SelectCollisionCandidates(AliVEvent::kMuonUnlikeLowPt7 | AliVEvent::kMuonLikeLowPt7 | AliVEvent::kMuonSingleLowPt7 | AliVEvent::kMuonSingleHighPt7  | AliVEvent::kINT7inMUON  | AliVEvent::kINT7 | AliVEvent::kMuonUnlikePB | AliVEvent::kMuonLikePB | AliVEvent::kMUSPB | AliVEvent::kMB);
    /////////////////////////////////////////////////////////////////////////////
 
    // WORNING!

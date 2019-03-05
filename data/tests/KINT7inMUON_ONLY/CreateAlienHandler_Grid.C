@@ -38,7 +38,7 @@ AliAnalysisGrid* CreateAlienHandler_Grid(const char *runMode, TString GridDir, T
 
   // Define alien work directory where all files will be copied. Relative to alien $HOME.
   char outdirname[250];
-  sprintf(outdirname,"test_PbPb2015_OLD_PS/LHC15o/muon_calo_pass1/%d",RunNumber); //without PS             // Define your own directory
+  sprintf(outdirname,"test_PbPb2015_KINT7inMUON_ONLY/LHC15o/muon_calo_pass1/%d",RunNumber); //without PS             // Define your own directory
   plugin -> SetGridWorkingDir(outdirname);                                                          // NOTE: Change name here every new run!!!eclare alien output directory. Relative to working directory.
   plugin -> SetGridOutputDir("OutputTree");                                                         // In this case will be $HOME/work/output
   plugin -> SetOutputToRunNo(kFALSE);                                                               // we want the run number as output subdirectory

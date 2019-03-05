@@ -90,9 +90,9 @@ void RunPbPb_JPsi_Grid(const char *RunMode = "test",
   gROOT -> LoadMacro("AliAnalysisTaskPbPbJPsiTree_Dimuon.cxx++g");  //NEEDED to run LOCALLY!!!!
   gROOT -> LoadMacro("AddTaskPbPbJPsiTree_Dimuon_Grid.C");
   //////////////////////////////////////////////////////////////////////////////
-  //AliAnalysisTaskPbPbJPsiTree_Dimuon *taskTree = AddTaskPbPbJPsiTree_Dimuon_Grid(RunNumber);
-  //if(usePhysicsSelection) taskTree -> SelectCollisionCandidates(AliVEvent::kMuonUnlikePB | AliVEvent::kINT7 | AliVEvent::kMuonLikePB | AliVEvent::kMuonSingleLowPt7 | AliVEvent::kMUSPB | AliVEvent::kMB);
-  //mgr -> AddTask(taskTree);
+  AliAnalysisTaskPbPbJPsiTree_Dimuon *taskTree = AddTaskPbPbJPsiTree_Dimuon_Grid(RunNumber);
+  if(usePhysicsSelection) taskTree -> SelectCollisionCandidates(AliVEvent::kMuonUnlikeLowPt7 | AliVEvent::kMuonLikeLowPt7 | AliVEvent::kMuonSingleLowPt7 | AliVEvent::kMuonSingleHighPt7  | AliVEvent::kINT7inMUON  | AliVEvent::kINT7 | AliVEvent::kMuonUnlikePB | AliVEvent::kMuonLikePB | AliVEvent::kMB);
+  mgr -> AddTask(taskTree);
   //////////////////////////////////////////////////////////////////////////////
   //============================================================================
   // Init analysis on GRID
