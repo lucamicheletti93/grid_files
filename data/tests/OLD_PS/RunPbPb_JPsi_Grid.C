@@ -1,5 +1,5 @@
 /**************************************************************************
- * Copyright(c) 2013-2014, ALICE Experiment at CERN, All rights reserved. * 
+ * Copyright(c) 2013-2014, ALICE Experiment at CERN, All rights reserved. *
  *                                                                        *
  * Author: The ALICE Off-line Project.                                    *
  * Contributors are mentioned in the code where appropriate.              *
@@ -92,8 +92,8 @@ void RunPbPb_JPsi_Grid(const char *RunMode = "test",
   //////////////////////////////////////////////////////////////////////////////
   //AliAnalysisTaskPbPbJPsiTree_Dimuon *taskTree = AddTaskPbPbJPsiTree_Dimuon_Grid(RunNumber);
   //if(usePhysicsSelection) taskTree -> SelectCollisionCandidates(AliVEvent::kMuonUnlikePB | AliVEvent::kINT7 | AliVEvent::kMuonLikePB | AliVEvent::kMuonSingleLowPt7 | AliVEvent::kMUSPB | AliVEvent::kMB);
+  //mgr -> AddTask(taskTree);
   //////////////////////////////////////////////////////////////////////////////
-  mgr -> AddTask(taskTree);
   //============================================================================
   // Init analysis on GRID
   //============================================================================
