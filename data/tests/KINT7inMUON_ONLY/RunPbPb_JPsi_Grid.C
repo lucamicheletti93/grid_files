@@ -91,7 +91,8 @@ void RunPbPb_JPsi_Grid(const char *RunMode = "test",
   gROOT -> LoadMacro("AddTaskPbPbJPsiTree_Dimuon_Grid.C");
   //////////////////////////////////////////////////////////////////////////////
   AliAnalysisTaskPbPbJPsiTree_Dimuon *taskTree = AddTaskPbPbJPsiTree_Dimuon_Grid(RunNumber);
-  if(usePhysicsSelection) taskTree -> SelectCollisionCandidates(AliVEvent::kMuonUnlikeLowPt7 | AliVEvent::kMuonLikeLowPt7 | AliVEvent::kMuonSingleLowPt7 | AliVEvent::kMuonSingleHighPt7  | AliVEvent::kINT7inMUON  | AliVEvent::kINT7 | AliVEvent::kMuonUnlikePB | AliVEvent::kMuonLikePB | AliVEvent::kMB);
+  //if(usePhysicsSelection) taskTree -> SelectCollisionCandidates(AliVEvent::kMuonUnlikeLowPt7 | AliVEvent::kMuonLikeLowPt7 | AliVEvent::kMuonSingleLowPt7 | AliVEvent::kMuonSingleHighPt7  | AliVEvent::kINT7inMUON  | AliVEvent::kINT7 | AliVEvent::kMuonUnlikePB | AliVEvent::kMuonLikePB | AliVEvent::kMB);
+  // Silenzia : e' ridondante rispetto a quello che hai scritto nel .cxx
   mgr -> AddTask(taskTree);
   //////////////////////////////////////////////////////////////////////////////
   //============================================================================

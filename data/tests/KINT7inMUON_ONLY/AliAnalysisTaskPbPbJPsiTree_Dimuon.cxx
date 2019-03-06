@@ -292,26 +292,32 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserCreateOutputObjects(){
   TH1D *histAllPtSM = new TH1D("histAllPtSM","histAllPtSM",500,0.,50.);
   TH1D *histLowPtSM = new TH1D("histLowPtSM","histLowPtSM",500,0.,50.);
 
-  /*TH1D *histAllPtDM_25y4 = new TH1D("histAllPtDM_25y4","histAllPtDM_25y4",500,0.,50.);
+  TH1D *histAllPtDM_25y4 = new TH1D("histAllPtDM_25y4","histAllPtDM_25y4",500,0.,50.);
   TH1D *histLowPtDM_25y4 = new TH1D("histLowPtDM_25y4","histLowPtDM_25y4",500,0.,50.);
 
   TH1D *histAllPtDM_25y3 = new TH1D("histAllPtDM_25y3","histAllPtDM_25y3",500,0.,50.);
-  TH1D *histLowPtDM_25y3  = new TH1D("histLowPtDM_25y3","histLowPtDM_25y3",500,0.,50.);
+  TH1D *histLowPtDM_25y3 = new TH1D("histLowPtDM_25y3","histLowPtDM_25y3",500,0.,50.);
 
-  TH1D *histAllPtDM_3y35  = new TH1D("histAllPtDM_3y35","histAllPtDM_3y35",500,0.,50.);
-  TH1D *histLowPtDM_3y35  = new TH1D("histLowPtDM_3y35","histLowPtDM_3y35",500,0.,50.);
+  TH1D *histAllPtDM_3y35 = new TH1D("histAllPtDM_3y35","histAllPtDM_3y35",500,0.,50.);
+  TH1D *histLowPtDM_3y35 = new TH1D("histLowPtDM_3y35","histLowPtDM_3y35",500,0.,50.);
 
-  TH1D *histAllPtDM_35y4  = new TH1D("histAllPtDM_35y4","histAllPtDM_35y4",500,0.,50.);
-  TH1D *histLowPtDM_35y4  = new TH1D("histLowPtDM_35y4","histLowPtDM_35y4",500,0.,50.);*/
-
-  TH1D *histAllPtDM_25eta4 = new TH1D("histAllPtDM_25eta4","histAllPtDM_25eta4",500,0.,50.);
-  TH1D *histLowPtDM_25eta4 = new TH1D("histLowPtDM_25eta4","histLowPtDM_25eta4",500,0.,50.);
+  TH1D *histAllPtDM_35y4 = new TH1D("histAllPtDM_35y4","histAllPtDM_35y4",500,0.,50.);
+  TH1D *histLowPtDM_35y4 = new TH1D("histLowPtDM_35y4","histLowPtDM_35y4",500,0.,50.);
 
   fOutput -> Add(histAllPtSM);
   fOutput -> Add(histLowPtSM);
 
-  fOutput -> Add(histAllPtDM_25eta4);
-  fOutput -> Add(histLowPtDM_25eta4);
+  fOutput -> Add(histAllPtDM_25y3);
+  fOutput -> Add(histLowPtDM_25y3);
+
+  fOutput -> Add(histAllPtDM_3y35);
+  fOutput -> Add(histLowPtDM_3y35);
+
+  fOutput -> Add(histAllPtDM_35y4);
+  fOutput -> Add(histLowPtDM_35y4);
+
+  fOutput -> Add(histAllPtDM_25y4);
+  fOutput -> Add(histLowPtDM_25y4);
 
   fOutput->ls();
 
@@ -530,104 +536,34 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
                     if(TriggerSelected_CINT7){
                       //cout << "trigger CINT7" << endl;
                       if(DimuPt > 0 && DimuPt < 50){ 
-                        if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(Pt_Mu0);}
-                        if(Match_Mu1 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(Pt_Mu1);}
+                        if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25y4"))) -> Fill(Pt_Mu0);}
+                        if(Match_Mu1 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25y4"))) -> Fill(Pt_Mu1);}
 
-                        if(Match_Mu0 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(Pt_Mu0);}
-                        if(Match_Mu1 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(Pt_Mu1);}
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    //cout << "--------------------------------------" << endl;
-  }
+                        if(Match_Mu0 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25y4"))) -> Fill(Pt_Mu0);}
+                        if(Match_Mu1 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25y4"))) -> Fill(Pt_Mu1);}
 
-  // Di-Muon Loop
-  /*cout << "N DIMU = " << fAODEvent -> GetNumberOfDimuons() << endl;
-  for(int i = 0;i < fAODEvent -> GetNumberOfDimuons();i++){
-    AliAODDimuon *dimu = dynamic_cast <AliAODDimuon*> (fAODEvent -> GetDimuon(i));
-    AliAODTrack *mu0 = dimu -> GetMu(0);
-    AliAODTrack *mu1 = dimu -> GetMu(1);
+                        if(DimuY > -3.0 && DimuY < -2.5){
+                          if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25y3"))) -> Fill(Pt_Mu0);}
+                          if(Match_Mu1 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25y3"))) -> Fill(Pt_Mu1);}
 
-    if(!fMuonTrackCuts -> IsSelected(mu0)){continue;}
-    if(!fMuonTrackCuts -> IsSelected(mu1)){continue;}
+                          if(Match_Mu0 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25y3"))) -> Fill(Pt_Mu0);}
+                          if(Match_Mu1 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25y3"))) -> Fill(Pt_Mu1);}
+                        }
 
-    Double_t DimuMass = 999;
-    Double_t DimuPt = -999;
-    Double_t DimuY = -999;
-    Double_t Match_Mu0 = -999;
-    Double_t Match_Mu1 = -999;
-    Double_t Pt_Mu0 = -999;
-    Double_t Pt_Mu1 = -999;
-    Double_t Eta_Mu0 = -999;
-    Double_t Eta_Mu1 = -999;
-    Double_t RAbs_Mu0 = -999;
-    Double_t RAbs_Mu1 = -999;	  
-    
-    Match_Mu0 = mu0 -> GetMatchTrigger();
-    Match_Mu1 = mu1 -> GetMatchTrigger();
-    Eta_Mu0 = mu0 -> Eta();
-    Eta_Mu1 = mu1 -> Eta();
-    RAbs_Mu0 = mu0 -> GetRAtAbsorberEnd();
-    RAbs_Mu1 = mu1 -> GetRAtAbsorberEnd();       
-    Pt_Mu0 = mu0 -> Pt();
-    Pt_Mu1 = mu1 -> Pt();
+                        if(DimuY > -3.5 && DimuY < -3.0){
+                          if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_3y35"))) -> Fill(Pt_Mu0);}
+                          if(Match_Mu1 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_3y35"))) -> Fill(Pt_Mu1);}
 
-    cout << "LOOP DIMUONI" << endl;
-    if((Eta_Mu0 > -4 && Eta_Mu0 < -2.5) && (Eta_Mu1 > -4 && Eta_Mu1 < -2.5)){
-      cout << "ETA DIMUONI" << endl;
-      if((RAbs_Mu0 > 17.6 && RAbs_Mu0 < 89.5) && (RAbs_Mu1 > 17.6 && RAbs_Mu1 < 89.5)){
-        cout << "RABS DIMUONI" << endl;
-        DimuY = dimu -> Y();
-        if(DimuY > -4 && DimuY < -2.5){
-          cout << "RAPIDITY DIMUONI" << endl;
-          if(dimu -> Charge() == 0){
-            cout << "CARICA" << endl;
-            if(TriggerSelected_CINT7){
-              cout << "TRIGGER" << endl;
-              if(DimuPt > 0 && DimuPt < 50){
-                cout << "PT" << endl;
-                if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(Pt_Mu0);}
-		            if(Match_Mu1 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(Pt_Mu1);}
-		            if(Match_Mu0 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(Pt_Mu0);}
-		            if(Match_Mu1 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(Pt_Mu1);}
-              }
-            }
-          }
-        }
-      }
-    }
-  }*/
+                          if(Match_Mu0 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_3y35"))) -> Fill(Pt_Mu0);}
+                          if(Match_Mu1 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_3y35"))) -> Fill(Pt_Mu1);}
+                        }
 
+                        if(DimuY > -4 && DimuY < -3.5){
+                          if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_35y4"))) -> Fill(Pt_Mu0);}
+                          if(Match_Mu1 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_35y4"))) -> Fill(Pt_Mu1);}
 
-  /*for(int i = 0;i < ntracks;i++){
-    AliAODTrack *mu0 = (AliAODTrack*) fAODEvent -> GetTrack(i);
-    if(!fMuonTrackCuts -> IsSelected(mu0)){continue;}
-    if(mu0 -> IsMuonTrack()){
-      if(mu0 -> Eta() > -4 && mu0 -> Eta() < -2.5){
-        if(mu0 -> GetRAtAbsorberEnd() > 17.6 && mu0 -> GetRAtAbsorberEnd() < 89.5){
-          for(int j = i+1;j < ntracks;j++){
-            AliAODTrack *mu1 = (AliAODTrack*) fAODEvent -> GetTrack(j);
-            if(!fMuonTrackCuts -> IsSelected(mu1)){continue;}
-            if(mu1 -> IsMuonTrack()){
-              if(mu1 -> Eta() > -4 && mu1 -> Eta() < -2.5){
-                if(mu1 -> GetRAtAbsorberEnd() > 17.6 && mu1 -> GetRAtAbsorberEnd() < 89.5){
-                  AliAODDimuon *dimu = new AliAODDimuon(mu0,mu1);
-                  if(dimu -> Y() > -4 && dimu -> Y() < -2.5){
-                    if(dimu -> Charge() == 0){
-                      if(TriggerSelected_CINT7){
-                        if(dimu -> Pt() > 0 && dimu -> Pt() < 50){
-                          if(mu0 -> GetMatchTrigger() >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(mu0 -> Pt());}
-                          if(mu1 -> GetMatchTrigger() >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25eta4"))) -> Fill(mu1 -> Pt());}
-
-                          if(mu0 -> GetMatchTrigger() >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(mu0 -> Pt());}
-                          if(mu1 -> GetMatchTrigger() >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_25eta4"))) -> Fill(mu1 -> Pt());}
+                          if(Match_Mu0 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_35y4"))) -> Fill(Pt_Mu0);}
+                          if(Match_Mu1 >= 2){((TH1D*)(fOutput -> FindObject("histLowPtDM_35y4"))) -> Fill(Pt_Mu1);}
                         }
                       }
                     }
@@ -639,7 +575,7 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
         }
       }
     }
-  }*/
+  }
 
   PostData(1,fOutput);
 }

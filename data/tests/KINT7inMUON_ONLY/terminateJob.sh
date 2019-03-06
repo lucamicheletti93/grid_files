@@ -20,6 +20,7 @@ if $RUN_TO_TERMINATE ; then
 	echo "$LINE" >> "bash_scripts/terminated_jobs.txt"
 	root -b -q RunPbPb_JPsi_Grid.C\(\"terminate\",$LINE\)
 else
+	echo "==================================="	
 	while IFS=FILE_TERMINATED_RUNS read LINE; do
 		if grep -Fxq "$LINE" $FILE_RETERMINATED_RUNS; then
 			echo "RUN $LINE ALREADY RETERMINATED"
