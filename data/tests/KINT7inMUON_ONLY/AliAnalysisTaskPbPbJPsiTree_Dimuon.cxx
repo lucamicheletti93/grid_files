@@ -23,7 +23,7 @@
 //
 //-----------------------------------------------------------------------------
 
-//#ifndef AliAnalysisTaskPbPbJPsiTree_Dimuon_CXX 
+//#ifndef AliAnalysisTaskPbPbJPsiTree_Dimuon_CXX
 //#define AliAnalysisTaskPbPbJPsiTree_Dimuon_CXX
 
 // ROOT includes
@@ -485,17 +485,17 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
   Double_t Eta_Mu0 = -999;
   Double_t Eta_Mu1 = -999;
   Double_t RAbs_Mu0 = -999;
-  Double_t RAbs_Mu1 = -999;	 
+  Double_t RAbs_Mu1 = -999;
 
 
-  for(int i = 0;i < ntracks;i++){ 
+  for(int i = 0;i < ntracks;i++){
     AliAODTrack *mu0 = (AliAODTrack*) fAODEvent -> GetTrack(i);
     if(mu0 -> IsMuonTrack()){
       for(int j = i+1;j < ntracks;j++){
         AliAODTrack *mu1 = (AliAODTrack*) fAODEvent -> GetTrack(j);
         if(mu1 -> IsMuonTrack()){
           if (!fMuonTrackCuts -> IsSelected(mu0)) continue;
-          if (!fMuonTrackCuts -> IsSelected(mu1)) continue; 
+          if (!fMuonTrackCuts -> IsSelected(mu1)) continue;
 
           DimuMass = 999;
           DimuPt = -999;
@@ -507,14 +507,14 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
           Eta_Mu0 = -999;
           Eta_Mu1 = -999;
           RAbs_Mu0 = -999;
-          RAbs_Mu1 = -999;	  
-            
+          RAbs_Mu1 = -999;
+
           Match_Mu0 = mu0 -> GetMatchTrigger();
           Match_Mu1 = mu1 -> GetMatchTrigger();
           Eta_Mu0 = mu0 -> Eta();
           Eta_Mu1 = mu1 -> Eta();
           RAbs_Mu0 = mu0 -> GetRAtAbsorberEnd();
-          RAbs_Mu1 = mu1 -> GetRAtAbsorberEnd();       
+          RAbs_Mu1 = mu1 -> GetRAtAbsorberEnd();
           Pt_Mu0 = mu0 -> Pt();
           Pt_Mu1 = mu1 -> Pt();
 
@@ -535,7 +535,7 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
                   if(fIsPhysSelected){                                                    // PS added to see the effet
                     if(TriggerSelected_CINT7){
                       //cout << "trigger CINT7" << endl;
-                      if(DimuPt > 0 && DimuPt < 50){ 
+                      if(DimuPt > 0 && DimuPt < 50){
                         if(Match_Mu0 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25y4"))) -> Fill(Pt_Mu0);}
                         if(Match_Mu1 >= 1){((TH1D*)(fOutput -> FindObject("histAllPtDM_25y4"))) -> Fill(Pt_Mu1);}
 
