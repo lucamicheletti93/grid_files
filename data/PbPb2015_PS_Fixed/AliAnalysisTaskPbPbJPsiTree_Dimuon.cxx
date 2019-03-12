@@ -512,7 +512,8 @@ void AliAnalysisTaskPbPbJPsiTree_Dimuon::UserExec(Option_t *)
 
       AliAODDimuon *dimu = new AliAODDimuon(mu0,mu1);
 
-    	if(dimu -> Mass() > 2. && dimu -> Charge() == 0){
+    	//if(dimu -> Mass() > 2. && dimu -> Charge() == 0){
+      if(dimu -> Charge() == 0){                                                // no dimu mass cut
 
         good_muons[i] = 1;
         good_muons[j] = 1;
