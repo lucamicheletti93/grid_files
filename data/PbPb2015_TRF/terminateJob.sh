@@ -4,16 +4,20 @@ FILE_RUN_LIST="bash_scripts/submitted_jobs.txt"
 FILE_TERMINATED_RUNS="bash_scripts/terminated_jobs.txt"
 FILE_RETERMINATED_RUNS="bash_scripts/reterminated_jobs.txt"
 RUN_TO_TERMINATE=false
+COUNTER=0
 
 while IFS=FILE_RUN_LIST read LINE; do
 	if grep -Fxq "$LINE" $FILE_TERMINATED_RUNS; then
-		echo "RUN $LINE ALREADY TERMINATED"
+		((COUNTER++))
+		echo "$COUNTER) RUN $LINE ALREADY TERMINATED"
 	else
 		echo "RUN $LINE NOT YET TERMINATED, TERMINATE!"
 		RUN_TO_TERMINATE=true
 		break
 	fi
 done < "$FILE_RUN_LIST"
+
+COUNTER=0
 
 if $RUN_TO_TERMINATE ; then
 	echo "TERMINATE $LINE"
@@ -23,7 +27,8 @@ else
 	echo "==================================="	
 	while IFS=FILE_TERMINATED_RUNS read LINE; do
 		if grep -Fxq "$LINE" $FILE_RETERMINATED_RUNS; then
-			echo "RUN $LINE ALREADY RETERMINATED"
+			((COUNTER++))
+			echo "$COUNTER) RUN $LINE ALREADY RETERMINATED"
 		else
 			echo "RUN $LINE NOT YET RETERMINATED, DO YOU  WANT TO RETERMINATE?"
 			break
